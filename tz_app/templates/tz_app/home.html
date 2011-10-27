@@ -1,12 +1,47 @@
-<!DOCTYPE html>{% load url from future %}
-<html>
-    <head>
-        <title>Timzone support in Django</title>
-    </head>
-    <body>
-        <p>
-            <a href="{% url 'admin:index' %}">Go to the admin</a>
-            and log in with admin / password.
-        </p>
-    </body>
-</html>
+{% extends "admin/base_site.html" %}
+{% load l10n tz %}{% load url from future %}
+
+{% block content %}
+<p><a href="{% url 'admin:index' %}">Go to the admin</a> and log in with admin / password.</p>
+
+{% localize off %}{# datetimes are more readable in ISO format #}
+
+<div class="module" style="margin: 1em auto; width: 40em;">
+    <table summary="Names objects" style="width: 40em;">
+        <caption>Name objects</caption>
+        <tr>
+            <th>Name</th>
+            <th>Dated</th>
+            <th>Dated (UTC)</th>
+        </tr>
+{% for name in names %}
+        <tr>
+            <td>{{ name.name }}</td>
+            <td>{{ name.dated }}</td>
+            <td>{{ name.dated|asutc }}</td>
+        </tr>
+{% endfor %}
+    </table>
+</div>
+
+<div class="module" style="margin: 1em auto; width: 40em;">
+    <table summary="Auto name objects" style="width: 40em;">
+        <caption>Auto name objects</caption>
+        <tr>
+            <th>Name</th>
+            <th>Created</th>
+            <th>Updated</th>
+        </tr>
+{% for auto_name in auto_names %}
+        <tr>
+            <td>{{ auto_name.name }}</td>
+            <td>{{ auto_name.created }}</td>
+            <td>{{ auto_name.updated }}</td>
+        </tr>
+{% endfor %}
+    </table>
+</div>
+
+{% endlocalize %}
+
+{% endblock %}
