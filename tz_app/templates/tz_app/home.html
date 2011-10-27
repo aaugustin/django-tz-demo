@@ -20,7 +20,7 @@ div.module table { width: 100%; }
         <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>{{ language.name_local }} ({{ language.code }})</option>
 {% endfor %}
     </select>
-    <input type="submit" value="Go" />
+    <input type="submit" value="Set" />
 </form>
 
 {% if pytz %}
@@ -32,7 +32,7 @@ div.module table { width: 100%; }
         <option value="{{ timezone }}"{% if timezone == TIME_ZONE %} selected="selected"{% endif %}>{{ timezone }}</option>
 {% endfor %}
     </select>
-    <input type="submit" value="Go" />
+    <input type="submit" value="Set" />
 </form>
 <form action="{% url 'set_alt_timezone' %}" method="POST">
     {% csrf_token %}
@@ -42,7 +42,7 @@ div.module table { width: 100%; }
         <option value="{{ timezone }}"{% if timezone == alt_timezone_name %} selected="selected"{% endif %}>{{ timezone }}</option>
 {% endfor %}
     </select>
-    <input type="submit" value="Go" />
+    <input type="submit" value="Set" />
 </form>
 {% else %}
 <p>Time zone: {{ TIME_ZONE }}.</p>
@@ -171,7 +171,7 @@ div.module table { width: 100%; }
 
 <h2>Play with the admin</h2>
 
-<p><a href="{% url 'admin:index' %}">Go to the admin</a> and log in with admin / password.</p>
+<p><a href="{% url 'admin:index' %}">Go to the admin.</a></p>
 
 <h2>See the contents of the database</h2>
 

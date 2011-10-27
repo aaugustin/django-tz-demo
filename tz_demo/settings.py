@@ -31,6 +31,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'tz_app.middleware.TimezoneMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'tz_app.middleware.AutoLoginMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
