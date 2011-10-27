@@ -22,6 +22,18 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 )
 
+LANGUAGE_CODE = 'en'
+
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'tz_app.middleware.TimezoneMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+)
+
 ROOT_URLCONF = 'tz_demo.urls'
 
 SECRET_KEY = '%u*u4d7%9nk9y1j18%pid_pvm=)zwx#g-n-ov)h(3e975wu#r0'
@@ -30,9 +42,9 @@ SITE_ID = 1
 
 STATIC_URL = '/static/'
 
-USE_I18N = False
+USE_I18N = True
 
-USE_L10N = False
+USE_L10N = True
 
 USE_TZ = True
 

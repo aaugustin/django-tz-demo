@@ -1,13 +1,47 @@
 {% extends "admin/base_site.html" %}
-{% load l10n tz %}{% load url from future %}
+{% load i18n l10n tz %}{% load url from future %}
 
 {% block content %}
+
+<h2>Set your locale and timezone</h2>
+
+<form action="{% url 'set_locale' %}" method="POST">
+    {% csrf_token %}
+    <label for="language">Locale:</label>
+    <select name="language">
+{% get_language_info_list for LANGUAGES as languages %}
+{% for language in languages %}
+        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>{{ language.name_local }} ({{ language.code }})</option>
+{% endfor %}
+    </select>
+    <input type="submit" value="Go" />
+</form>
+
+{% if pytz %}
+<form action="{% url 'set_timezone' %}" method="POST">
+    {% csrf_token %}
+    <label for="timezone">Time zone:</label>
+    <select name="timezone">
+{% for timezone in timezones %}
+        <option value="{{ timezone }}"{% if timezone == TIME_ZONE %} selected="selected"{% endif %}>{{ timezone }}</option>
+{% endfor %}
+    </select>
+    <input type="submit" value="Go" />
+</form>
+{% else %}
+<p>Time zone: {{ TIME_ZONE }}. If you install <a href="http://pytz.sourceforge.net/">pytz</a>, you'll be able to change it.</p>
+{% endif %}
+
+<h2>Play with the admin</h2>
+
 <p><a href="{% url 'admin:index' %}">Go to the admin</a> and log in with admin / password.</p>
+
+<h2>See the contents of the database</h2>
 
 {% localize off %}{# datetimes are more readable in ISO format #}
 
-<div class="module" style="margin: 1em auto; width: 40em;">
-    <table summary="Names objects" style="width: 40em;">
+<div class="module" style="margin: 1em auto; width: 50em;">
+    <table summary="Names objects" style="width: 50em;">
         <caption>Name objects</caption>
         <tr>
             <th>Name</th>
@@ -24,8 +58,8 @@
     </table>
 </div>
 
-<div class="module" style="margin: 1em auto; width: 40em;">
-    <table summary="Auto name objects" style="width: 40em;">
+<div class="module" style="margin: 1em auto; width: 50em;">
+    <table summary="Auto name objects" style="width: 50em;">
         <caption>Auto name objects</caption>
         <tr>
             <th>Name</th>
