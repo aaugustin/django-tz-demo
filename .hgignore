@@ -1,3 +1,4 @@
 syntax: glob
 
 *.py[co]
+db.sqlite3
