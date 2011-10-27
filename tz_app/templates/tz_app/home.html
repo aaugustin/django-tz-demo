@@ -1,6 +1,12 @@
 {% extends "admin/base_site.html" %}
 {% load i18n l10n tz %}{% load url from future %}
 
+{% block extrahead %}
+<style type="text/css">
+div.module table { width: 100%; }
+</style>
+{% endblock %}
+
 {% block content %}
 
 <h2>Set your locale and timezone</h2>
@@ -28,9 +34,140 @@
     </select>
     <input type="submit" value="Go" />
 </form>
+<form action="{% url 'set_alt_timezone' %}" method="POST">
+    {% csrf_token %}
+    <label for="timezone">Alternative time zone:</label>
+    <select name="timezone">
+{% for timezone in timezones %}
+        <option value="{{ timezone }}"{% if timezone == alt_timezone_name %} selected="selected"{% endif %}>{{ timezone }}</option>
+{% endfor %}
+    </select>
+    <input type="submit" value="Go" />
+</form>
 {% else %}
-<p>Time zone: {{ TIME_ZONE }}. If you install <a href="http://pytz.sourceforge.net/">pytz</a>, you'll be able to change it.</p>
+<p>Time zone: {{ TIME_ZONE }}.</p>
+<p>Alternative time zone: {{ alt_timezone_name }}.</p>
+<p>If you install <a href="http://pytz.sourceforge.net/">pytz</a>, you'll be able to change it.</p>
 {% endif %}
+
+<h2>Check the results</h2>
+
+<div class="module">
+    <table summary="Conversions for now in UTC">
+        <caption>Conversions for now in UTC</caption>
+        <tr>
+            <th>localtime</th>
+            <th>localize</th>
+            <th>Default</th>
+            <th>Local time</th>
+            <th>Alternative time</th>
+            <th>UTC</th>
+        </tr>
+{% localtime on %}
+{% localize on %}
+        <tr>
+            <td>on</td>
+            <td>on</td>
+            <td>{{ utc_now }}</td>
+            <td>{{ utc_now|aslocaltime }}</td>
+            <td>{{ utc_now|astimezone:alt_timezone }}</td>
+            <td>{{ utc_now|asutc }}</td>
+        </tr>
+{% endlocalize %}
+{% localize off %}
+        <tr>
+            <td>on</td>
+            <td>off</td>
+            <td>{{ utc_now }}</td>
+            <td>{{ utc_now|aslocaltime }}</td>
+            <td>{{ utc_now|astimezone:alt_timezone }}</td>
+            <td>{{ utc_now|asutc }}</td>
+        </tr>
+{% endlocalize %}
+{% endlocaltime %}
+{% localtime off %}
+{% localize on %}
+        <tr>
+            <td>off</td>
+            <td>on</td>
+            <td>{{ utc_now }}</td>
+            <td>{{ utc_now|aslocaltime }}</td>
+            <td>{{ utc_now|astimezone:alt_timezone }}</td>
+            <td>{{ utc_now|asutc }}</td>
+        </tr>
+{% endlocalize %}
+{% localize off %}
+        <tr>
+            <td>off</td>
+            <td>off</td>
+            <td>{{ utc_now }}</td>
+            <td>{{ utc_now|aslocaltime }}</td>
+            <td>{{ utc_now|astimezone:alt_timezone }}</td>
+            <td>{{ utc_now|asutc }}</td>
+        </tr>
+{% endlocalize %}
+{% endlocaltime %}
+    </table>
+</div>
+
+<div class="module">
+    <table summary="Conversions for now in local time">
+        <caption>Conversions for now in local time</caption>
+        <tr>
+            <th>localtime</th>
+            <th>localize</th>
+            <th>Default</th>
+            <th>Local time</th>
+            <th>Alternative time</th>
+            <th>UTC</th>
+        </tr>
+{% localtime on %}
+{% localize on %}
+        <tr>
+            <td>on</td>
+            <td>on</td>
+            <td>{{ local_now }}</td>
+            <td>{{ local_now|aslocaltime }}</td>
+            <td>{{ local_now|astimezone:alt_timezone }}</td>
+            <td>{{ local_now|asutc }}</td>
+        </tr>
+{% endlocalize %}
+{% localize off %}
+        <tr>
+            <td>on</td>
+            <td>off</td>
+            <td>{{ local_now }}</td>
+            <td>{{ local_now|aslocaltime }}</td>
+            <td>{{ local_now|astimezone:alt_timezone }}</td>
+            <td>{{ local_now|asutc }}</td>
+        </tr>
+{% endlocalize %}
+{% endlocaltime %}
+{% localtime off %}
+{% localize on %}
+        <tr>
+            <td>off</td>
+            <td>on</td>
+            <td>{{ local_now }}</td>
+            <td>{{ local_now|aslocaltime }}</td>
+            <td>{{ local_now|astimezone:alt_timezone }}</td>
+            <td>{{ local_now|asutc }}</td>
+        </tr>
+{% endlocalize %}
+{% localize off %}
+        <tr>
+            <td>off</td>
+            <td>off</td>
+            <td>{{ local_now }}</td>
+            <td>{{ local_now|aslocaltime }}</td>
+            <td>{{ local_now|astimezone:alt_timezone }}</td>
+            <td>{{ local_now|asutc }}</td>
+        </tr>
+{% endlocalize %}
+{% endlocaltime %}
+    </table>
+</div>
+
 
 <h2>Play with the admin</h2>
 
@@ -40,8 +177,8 @@
 
 {% localize off %}{# datetimes are more readable in ISO format #}
 
-<div class="module" style="margin: 1em auto; width: 50em;">
-    <table summary="Names objects" style="width: 50em;">
+<div class="module">
+    <table summary="Names objects">
         <caption>Name objects</caption>
         <tr>
             <th>Name</th>
@@ -58,8 +195,8 @@
     </table>
 </div>
 
-<div class="module" style="margin: 1em auto; width: 50em;">
-    <table summary="Auto name objects" style="width: 50em;">
+<div class="module">
+    <table summary="Auto name objects">
         <caption>Auto name objects</caption>
         <tr>
             <th>Name</th>

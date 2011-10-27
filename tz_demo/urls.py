@@ -3,9 +3,14 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^$', 'tz_app.views.home', name='home'),
+urlpatterns = patterns('tz_app.views',
+    url(r'^$', 'home', name='home'),
+    url(r'^timezone/', 'set_timezone', name='set_timezone'),
+    url(r'^alt_timezone/', 'set_timezone', {'session_key': 'alt_timezone'},
+            name='set_alt_timezone'),
+)
+
+urlpatterns += patterns('',
     url(r'^locale/', 'django.views.i18n.set_language', name='set_locale'),
-    url(r'^timezone/', 'tz_app.views.set_timezone', name='set_timezone'),
     url(r'^admin/', include(admin.site.urls)),
 )
