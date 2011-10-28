@@ -1,6 +1,7 @@
 import datetime
 
 from django import http
+from django.conf import settings
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -12,6 +13,7 @@ except ImportError:
 from .models import Name, AutoName
 
 def home(request):
+    default_timezone_name = settings.TIME_ZONE
     if pytz:
         timezones = pytz.common_timezones
         alt_timezone = request.session.get('alt_timezone', pytz.utc)
@@ -20,15 +22,20 @@ def home(request):
         timezones = []
         alt_timezone = timezone.utc
         alt_timezone_name = 'UTC'
-    utc_now = datetime.datetime.utcnow().replace(tzinfo=timezone.utc)
+
+    utc_now = datetime.datetime.utcnow()
+    utc_now = utc_now.replace(microsecond=0, tzinfo=timezone.utc)
     local_now = utc_now.astimezone(timezone.get_current_timezone())
+    naive_now = utc_now.astimezone(timezone.get_default_timezone())
     if pytz:
         local_now = timezone.get_current_timezone().normalize(local_now)
-    on_off = 'on', 'off'
+        naive_now = timezone.get_default_timezone().normalize(naive_now)
+    naive_now = naive_now.replace(tzinfo=None)
+
     names = Name.objects.order_by('-dated')
     auto_names = AutoName.objects.order_by('-created')
-    context = {}
-    context.update(globals())
+
+    context = {'pytz': pytz}
     context.update(locals())
     return render(request, 'tz_app/home.html', context)
 
