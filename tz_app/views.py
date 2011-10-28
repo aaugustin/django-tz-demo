@@ -10,7 +10,9 @@ try:
 except ImportError:
     pytz = None
 
+from .forms import WhenForm
 from .models import Name, AutoName
+from .utils import get_utc_now, get_default_now, get_current_now
 
 def home(request):
     default_timezone_name = settings.TIME_ZONE
@@ -23,14 +25,13 @@ def home(request):
         alt_timezone = timezone.utc
         alt_timezone_name = 'UTC'
 
-    utc_now = datetime.datetime.utcnow()
-    utc_now = utc_now.replace(microsecond=0, tzinfo=timezone.utc)
-    local_now = utc_now.astimezone(timezone.get_current_timezone())
-    naive_now = utc_now.astimezone(timezone.get_default_timezone())
-    if pytz:
-        local_now = timezone.get_current_timezone().normalize(local_now)
-        naive_now = timezone.get_default_timezone().normalize(naive_now)
-    naive_now = naive_now.replace(tzinfo=None)
+    utc_now = get_utc_now()
+    local_now = get_current_now()
+    naive_now = get_default_now().replace(tzinfo=None)
+
+    form = WhenForm(request.GET or None)
+    if form.is_valid():
+        when = form.cleaned_data['when']
 
     names = Name.objects.order_by('-dated')
     auto_names = AutoName.objects.order_by('-created')

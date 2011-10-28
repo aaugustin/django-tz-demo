@@ -4,7 +4,7 @@
 {% block extrahead %}
 <style type="text/css">
 div.module table { width: 100%; }
-label, span.label { display: inline-block; font-weight: bold; margin-right: 0.5em; text-align: right; width: 15em;}
+label, span.label { display: inline-block; margin-right: 0.5em; text-align: right; width: 15em;}
 </style>
 {% endblock %}
 
@@ -52,7 +52,7 @@ label, span.label { display: inline-block; font-weight: bold; margin-right: 0.5e
     <input type="submit" value="Set" />
 </form></p>
 
-<h2>Check the results</h2>
+<h2>Conversions in templates</h2>
 
 <div class="module">
     <table summary="Conversions for now in UTC">
@@ -228,11 +228,25 @@ label, span.label { display: inline-block; font-weight: bold; margin-right: 0.5e
     </table>
 </div>
 
-<h2>Play with the admin</h2>
+<h2>Conversion in forms</h2>
 
-<p><a href="{% url 'admin:index' %}">Go to the admin.</a></p>
+<form action="{% url 'home' %}" method="GET">
+{{ form.as_p }}
+<p><span class="label"></span><input type="submit" value="Submit" /></p>
+</form>
 
-<h2>See the contents of the database</h2>
+{% if when %}
+<p><span class="label">You chose</span> <strong>{{ when }} in {{ TIME_ZONE }}</strong></p>
+<p><span class="label">which is</span> <strong>{{ when|unlocalize }}</strong></p>
+<p><span class="label">and</span> <strong>{{ when|asutc|unlocalize }}</strong></p>
+{% endif %}
+
+<h2>Conversions in models</h2>
+
+<p>
+    <a href="{% url 'admin:app_list' 'tz_app' %}">Go to the admin and add some objects.</a>
+    Here is the contents of the database:
+</p>
 
 {% localize off %}{# datetimes are more readable in ISO format #}
 
