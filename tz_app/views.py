@@ -18,7 +18,8 @@ def home(request):
 
     form = WhenForm(request.GET or None)
     if form.is_valid():
-        when = form.cleaned_data['when']
+        value = form.cleaned_data['value']
+        split_value = form.cleaned_data['split_value']
 
     names = Name.objects.order_by('-dated')
     auto_names = AutoName.objects.order_by('-created')

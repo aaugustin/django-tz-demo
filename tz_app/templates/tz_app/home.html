@@ -185,17 +185,22 @@ label, span.label { display: inline-block; margin-right: 0.5em; text-align: righ
     </table>
 </div>
 
-<h2>Conversion in forms</h2>
+<h2>Conversion in forms and widgets</h2>
 
 <form action="{% url 'home' %}" method="GET">
 {{ form.as_p }}
 <p><span class="label"></span><input type="submit" value="Submit" /></p>
 </form>
 
-{% if when %}
-<p><span class="label">You chose</span> <strong>{{ when }} in {{ TIME_ZONE }}</strong></p>
-<p><span class="label">which is</span> <strong>{{ when|unlocalize }}</strong></p>
-<p><span class="label">and</span> <strong>{{ when|asutc|unlocalize }}</strong></p>
+{% if value %}
+<p><span class="label">You set the value to</span> <strong>{{ value }} in {{ TIME_ZONE }}</strong></p>
+<p><span class="label">which is</span> <strong>{{ value|unlocalize }}</strong></p>
+<p><span class="label">and</span> <strong>{{ value|asutc|unlocalize }}</strong></p>
+{% endif %}
+{% if split_value %}
+<p><span class="label">You set the split value to</span> <strong>{{ split_value }} in {{ TIME_ZONE }}</strong></p>
+<p><span class="label">which is</span> <strong>{{ split_value|unlocalize }}</strong></p>
+<p><span class="label">and</span> <strong>{{ split_value|asutc|unlocalize }}</strong></p>
 {% endif %}
 
 <h2>Conversions in models</h2>
