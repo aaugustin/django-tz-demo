@@ -1,8 +1,52 @@
 {% extends "admin/base.html" %}
-{% load url from future %}
+{% load i18n tz %}{% load url from future %}
 
 {% block title %}Time zone support in Django{% endblock %}
 
 {% block branding %}<h1 id="site-name"><a href="{% url 'home' %}">Time zone support in Django</a></h1>{% endblock %}
 
 {% block userlinks %}{% endblock %}
+
+{% block pretitle %}
+<h2>Set your timezone and locale</h2>
+
+<p><span class="label">Default time zone:</span> {{ default_timezone_name }}</p>
+{% if pytz %}
+<p><form action="{% url 'set_timezone' %}" method="POST">
+    {% csrf_token %}
+    <label for="timezone">Current time zone:</label>
+    <select name="timezone">
+{% for timezone in timezones %}
+        <option value="{{ timezone }}"{% if timezone == TIME_ZONE %} selected="selected"{% endif %}>{{ timezone }}</option>
+{% endfor %}
+    </select>
+    <input type="submit" value="Set" />
+</form></p>
+<p><form action="{% url 'set_alt_timezone' %}" method="POST">
+    {% csrf_token %}
+    <label for="timezone">Alternative time zone:</label>
+    <select name="timezone">
+{% for timezone in timezones %}
+        <option value="{{ timezone }}"{% if timezone == alt_timezone_name %} selected="selected"{% endif %}>{{ timezone }}</option>
+{% endfor %}
+    </select>
+    <input type="submit" value="Set" />
+</form></p>
+{% else %}
+<p><em>If you install <a href="http://pytz.sourceforge.net/">pytz</a>, you'll be able to change the current and alternative time zone.</em></p>
+<p><span class="label">Current time zone:</span> {{ TIME_ZONE }}</p>
+<p><span class="label">Alternative time zone:</span> {{ alt_timezone_name }}</p>
+{% endif %}
+
+<p><form action="{% url 'set_locale' %}" method="POST">
+    {% csrf_token %}
+    <label for="language">Locale:</label>
+    <select name="language">
+{% get_language_info_list for LANGUAGES as languages %}
+{% for language in languages %}
+        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>{{ language.name_local }} ({{ language.code }})</option>
+{% endfor %}
+    </select>
+    <input type="submit" value="Set" />
+</form></p>
+{% endblock %}
