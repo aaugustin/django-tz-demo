@@ -21,8 +21,8 @@ def home(request):
         value = form.cleaned_data['value']
         split_value = form.cleaned_data['split_value']
 
-    names = Name.objects.order_by('-dated')
-    auto_names = AutoName.objects.order_by('-created')
+    names = Name.objects.order_by('dated')
+    auto_names = AutoName.objects.order_by('created', 'updated')
 
     return render(request, 'tz_app/home.html', locals())
 
