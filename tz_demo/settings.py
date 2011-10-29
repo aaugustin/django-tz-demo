@@ -16,6 +16,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
 )
@@ -29,6 +30,7 @@ MIDDLEWARE_CLASSES = (
     'tz_app.middleware.TimezoneMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'tz_app.middleware.AutoLoginMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'tz_demo.urls'
