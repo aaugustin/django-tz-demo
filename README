@@ -1,4 +1,4 @@
-This is a sample Django project to demonstrate timezone support. To run it:
+This is a sample Django project to demonstrate time zone support. To run it:
 
 $ hg clone https://bitbucket.org/aaugustin/django
 $ hg clone https://bitbucket.org/aaugustin/django-tz-demo
