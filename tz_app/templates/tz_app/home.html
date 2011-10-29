@@ -189,7 +189,7 @@ label, span.label { display: inline-block; margin-right: 0.5em; text-align: righ
 
 <form action="{% url 'home' %}" method="GET">
 {{ form.as_p }}
-<p><span class="label"></span><input type="submit" value="Submit" /></p>
+<p><span class="label"></span><input type="submit" value="Submit" /> or <a href="{% url 'home' %}">reset</a></p>
 </form>
 
 {% if value %}
