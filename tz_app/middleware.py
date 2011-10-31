@@ -12,7 +12,6 @@ class TimezoneMiddleware(object):
         timezone.deactivate()
         return response
 
-
 class AutoLoginMiddleware(object):
 
     def process_request(self, request):

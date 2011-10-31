@@ -3,8 +3,9 @@
 
 {% block extrahead %}
 <style type="text/css">
-div.module table { width: 100%; }
+form { margin: .2em 0 .4em 0; }
 label, span.label { display: inline-block; margin-right: 0.5em; text-align: right; width: 15em;}
+div.module table { width: 100%; }
 </style>
 {% endblock %}
 
@@ -12,7 +13,7 @@ label, span.label { display: inline-block; margin-right: 0.5em; text-align: righ
 <h2>Conversions in templates</h2>
 
 <div class="module">
-    <table summary="Conversions for now in UTC">
+    <table>
         <caption>Conversions for now in UTC</caption>
         <tr>
             <th>localtime</th>
@@ -70,7 +71,7 @@ label, span.label { display: inline-block; margin-right: 0.5em; text-align: righ
 </div>
 
 <div class="module">
-    <table summary="Conversions for now in local time">
+    <table>
         <caption>Conversions for now in local time</caption>
         <tr>
             <th>localtime</th>
@@ -128,7 +129,7 @@ label, span.label { display: inline-block; margin-right: 0.5em; text-align: righ
 </div>
 
 <div class="module">
-    <table summary="Conversions for now as a naive datetime">
+    <table>
         <caption>Conversions for now as a naive datetime</caption>
         <tr>
             <th>localtime</th>
@@ -189,7 +190,7 @@ label, span.label { display: inline-block; margin-right: 0.5em; text-align: righ
 
 <form action="{% url 'home' %}" method="GET">
 {{ form.as_p }}
-<p><span class="label"></span><input type="submit" value="Submit" /> or <a href="{% url 'home' %}">reset</a></p>
+<p><span class="label"></span><input type="submit" value="Submit"> or <a href="{% url 'home' %}">reset</a></p>
 </form>
 
 {% if value %}
@@ -213,7 +214,7 @@ label, span.label { display: inline-block; margin-right: 0.5em; text-align: righ
 {% localize off %}{# datetimes are more readable in ISO format #}
 
 <div class="module">
-    <table summary="Names objects">
+    <table>
         <caption>Name objects</caption>
         <tr>
             <th>Name</th>
@@ -231,7 +232,7 @@ label, span.label { display: inline-block; margin-right: 0.5em; text-align: righ
 </div>
 
 <div class="module">
-    <table summary="Auto name objects">
+    <table>
         <caption>Auto name objects</caption>
         <tr>
             <th>Name</th>

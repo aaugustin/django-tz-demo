@@ -18,7 +18,6 @@ def get_default_now():
 def get_current_now():
     return get_now_in(timezone.get_current_timezone())
 
-
 def get_now_in(tz):
     now = get_utc_now().astimezone(tz)
     if pytz:
