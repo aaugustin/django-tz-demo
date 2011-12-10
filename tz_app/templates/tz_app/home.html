@@ -30,9 +30,9 @@ div.module table { width: 100%; }
             <td>on</td>
             <td>on</td>
             <td>{{ utc_now }}</td>
-            <td>{{ utc_now|aslocaltime }}</td>
-            <td>{{ utc_now|astimezone:alt_timezone }}</td>
-            <td>{{ utc_now|asutc }}</td>
+            <td>{{ utc_now|localtime }}</td>
+            <td>{{ utc_now|timezone:alt_timezone }}</td>
+            <td>{{ utc_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% localize off %}
@@ -40,9 +40,9 @@ div.module table { width: 100%; }
             <td>on</td>
             <td>off</td>
             <td>{{ utc_now }}</td>
-            <td>{{ utc_now|aslocaltime }}</td>
-            <td>{{ utc_now|astimezone:alt_timezone }}</td>
-            <td>{{ utc_now|asutc }}</td>
+            <td>{{ utc_now|localtime }}</td>
+            <td>{{ utc_now|timezone:alt_timezone }}</td>
+            <td>{{ utc_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% endlocaltime %}
@@ -52,9 +52,9 @@ div.module table { width: 100%; }
             <td>off</td>
             <td>on</td>
             <td>{{ utc_now }}</td>
-            <td>{{ utc_now|aslocaltime }}</td>
-            <td>{{ utc_now|astimezone:alt_timezone }}</td>
-            <td>{{ utc_now|asutc }}</td>
+            <td>{{ utc_now|localtime }}</td>
+            <td>{{ utc_now|timezone:alt_timezone }}</td>
+            <td>{{ utc_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% localize off %}
@@ -62,9 +62,9 @@ div.module table { width: 100%; }
             <td>off</td>
             <td>off</td>
             <td>{{ utc_now }}</td>
-            <td>{{ utc_now|aslocaltime }}</td>
-            <td>{{ utc_now|astimezone:alt_timezone }}</td>
-            <td>{{ utc_now|asutc }}</td>
+            <td>{{ utc_now|localtime }}</td>
+            <td>{{ utc_now|timezone:alt_timezone }}</td>
+            <td>{{ utc_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% endlocaltime %}
@@ -88,9 +88,9 @@ div.module table { width: 100%; }
             <td>on</td>
             <td>on</td>
             <td>{{ local_now }}</td>
-            <td>{{ local_now|aslocaltime }}</td>
-            <td>{{ local_now|astimezone:alt_timezone }}</td>
-            <td>{{ local_now|asutc }}</td>
+            <td>{{ local_now|localtime }}</td>
+            <td>{{ local_now|timezone:alt_timezone }}</td>
+            <td>{{ local_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% localize off %}
@@ -98,9 +98,9 @@ div.module table { width: 100%; }
             <td>on</td>
             <td>off</td>
             <td>{{ local_now }}</td>
-            <td>{{ local_now|aslocaltime }}</td>
-            <td>{{ local_now|astimezone:alt_timezone }}</td>
-            <td>{{ local_now|asutc }}</td>
+            <td>{{ local_now|localtime }}</td>
+            <td>{{ local_now|timezone:alt_timezone }}</td>
+            <td>{{ local_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% endlocaltime %}
@@ -110,9 +110,9 @@ div.module table { width: 100%; }
             <td>off</td>
             <td>on</td>
             <td>{{ local_now }}</td>
-            <td>{{ local_now|aslocaltime }}</td>
-            <td>{{ local_now|astimezone:alt_timezone }}</td>
-            <td>{{ local_now|asutc }}</td>
+            <td>{{ local_now|localtime }}</td>
+            <td>{{ local_now|timezone:alt_timezone }}</td>
+            <td>{{ local_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% localize off %}
@@ -120,9 +120,9 @@ div.module table { width: 100%; }
             <td>off</td>
             <td>off</td>
             <td>{{ local_now }}</td>
-            <td>{{ local_now|aslocaltime }}</td>
-            <td>{{ local_now|astimezone:alt_timezone }}</td>
-            <td>{{ local_now|asutc }}</td>
+            <td>{{ local_now|localtime }}</td>
+            <td>{{ local_now|timezone:alt_timezone }}</td>
+            <td>{{ local_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% endlocaltime %}
@@ -146,9 +146,9 @@ div.module table { width: 100%; }
             <td>on</td>
             <td>on</td>
             <td>{{ naive_now }}</td>
-            <td>{{ naive_now|aslocaltime }}</td>
-            <td>{{ naive_now|astimezone:alt_timezone }}</td>
-            <td>{{ naive_now|asutc }}</td>
+            <td>{{ naive_now|localtime }}</td>
+            <td>{{ naive_now|timezone:alt_timezone }}</td>
+            <td>{{ naive_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% localize off %}
@@ -156,9 +156,9 @@ div.module table { width: 100%; }
             <td>on</td>
             <td>off</td>
             <td>{{ naive_now }}</td>
-            <td>{{ naive_now|aslocaltime }}</td>
-            <td>{{ naive_now|astimezone:alt_timezone }}</td>
-            <td>{{ naive_now|asutc }}</td>
+            <td>{{ naive_now|localtime }}</td>
+            <td>{{ naive_now|timezone:alt_timezone }}</td>
+            <td>{{ naive_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% endlocaltime %}
@@ -168,9 +168,9 @@ div.module table { width: 100%; }
             <td>off</td>
             <td>on</td>
             <td>{{ naive_now }}</td>
-            <td>{{ naive_now|aslocaltime }}</td>
-            <td>{{ naive_now|astimezone:alt_timezone }}</td>
-            <td>{{ naive_now|asutc }}</td>
+            <td>{{ naive_now|localtime }}</td>
+            <td>{{ naive_now|timezone:alt_timezone }}</td>
+            <td>{{ naive_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% localize off %}
@@ -178,9 +178,9 @@ div.module table { width: 100%; }
             <td>off</td>
             <td>off</td>
             <td>{{ naive_now }}</td>
-            <td>{{ naive_now|aslocaltime }}</td>
-            <td>{{ naive_now|astimezone:alt_timezone }}</td>
-            <td>{{ naive_now|asutc }}</td>
+            <td>{{ naive_now|localtime }}</td>
+            <td>{{ naive_now|timezone:alt_timezone }}</td>
+            <td>{{ naive_now|utc }}</td>
         </tr>
 {% endlocalize %}
 {% endlocaltime %}
@@ -197,12 +197,12 @@ div.module table { width: 100%; }
 {% if value %}
 <p><span class="label">You set the value to</span> <strong>{{ value }} in {{ TIME_ZONE }}</strong></p>
 <p><span class="label">which is</span> <strong>{{ value|unlocalize }}</strong></p>
-<p><span class="label">and</span> <strong>{{ value|asutc|unlocalize }}</strong></p>
+<p><span class="label">and</span> <strong>{{ value|utc|unlocalize }}</strong></p>
 {% endif %}
 {% if split_value %}
 <p><span class="label">You set the split value to</span> <strong>{{ split_value }} in {{ TIME_ZONE }}</strong></p>
 <p><span class="label">which is</span> <strong>{{ split_value|unlocalize }}</strong></p>
-<p><span class="label">and</span> <strong>{{ split_value|asutc|unlocalize }}</strong></p>
+<p><span class="label">and</span> <strong>{{ split_value|utc|unlocalize }}</strong></p>
 {% endif %}
 
 <h2>Conversions in models</h2>
@@ -226,7 +226,7 @@ div.module table { width: 100%; }
         <tr>
             <td>{{ name.name }}</td>
             <td>{{ name.dated }}</td>
-            <td>{{ name.dated|asutc }}</td>
+            <td>{{ name.dated|utc }}</td>
         </tr>
 {% endfor %}
     </table>
