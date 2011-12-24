@@ -17,7 +17,7 @@
 <form action="{% url 'set_timezone' %}" method="POST">
     {% csrf_token %}
     <label for="django_timezone">Current time zone:</label>
-    <select id="django_timezone">{% for timezone in timezones %}
+    <select id="django_timezone" name="django_timezone">{% for timezone in timezones %}
         <option{% if timezone == TIME_ZONE %} selected="selected"{% endif %}>{{ timezone }}</option>
     {% endfor %}</select>
     <input type="submit" value="Set">
@@ -25,7 +25,7 @@
 <form action="{% url 'set_alt_timezone' %}" method="POST">
     {% csrf_token %}
     <label for="alt_timezone">Alternative time zone:</label>
-    <select id="alt_timezone">{% for timezone in timezones %}
+    <select id="alt_timezone" name="alt_timezone">{% for timezone in timezones %}
         <option{% if timezone == alt_timezone_name %} selected="selected"{% endif %}>{{ timezone }}</option>
     {% endfor %}</select>
     <input type="submit" value="Set">
@@ -39,7 +39,7 @@
 <form action="{% url 'set_locale' %}" method="POST">
     {% csrf_token %}{% get_language_info_list for LANGUAGES as languages %}
     <label for="language">Locale:</label>
-    <select id="language">{% for language in languages %}
+    <select id="language" name="language">{% for language in languages %}
         <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>{{ language.name_local|capfirst }} ({{ language.code }})</option>
     {% endfor %}</select>
     <input type="submit" value="Set">
