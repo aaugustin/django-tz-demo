@@ -25,6 +25,7 @@ LANGUAGE_CODE = 'en'
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'tz_app.middleware.TimezoneMiddleware',
@@ -40,6 +41,7 @@ SECRET_KEY = '%u*u4d7%9nk9y1j18%pid_pvm=)zwx#g-n-ov)h(3e975wu#r0'
 TEMPLATE_CONTEXT_PROCESSORS = (
    'django.contrib.auth.context_processors.auth',
    'django.contrib.messages.context_processors.messages',
+   'django.core.context_processors.csrf',
    'django.core.context_processors.debug',
    'django.core.context_processors.i18n',
    'django.core.context_processors.media',
