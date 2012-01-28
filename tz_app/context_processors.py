@@ -7,7 +7,7 @@ except ImportError:
     pytz = None
 
 def timezones(request):
-    alt_timezone = request.session.get('alt_timezone', pytz.utc)
+    alt_timezone = request.session.get('alt_timezone', (pytz or timezone).utc)
     return {
         'pytz': pytz,
         'default_timezone_name': settings.TIME_ZONE,
