@@ -34,11 +34,13 @@ def set_timezone(request, key='django_timezone', name='current'):
     timezone = request.POST.get(key)
     if pytz and timezone:
         try:
-            request.session[key] = pytz.timezone(timezone)
-            messages.info(request, "The %s time zone was set to '%s'."
-                                   % (name, timezone))
+            pytz.timezone(timezone)
         except pytz.UnknownTimeZoneError:
             messages.error(request, "Time zone '%s' isn't available." % timezone)
+        else:
+            messages.info(request, "The %s time zone was set to '%s'."
+                                   % (name, timezone))
+            request.session[key] = timezone
     return redirect(request.META.get('HTTP_REFERER') or home)
 
 @require_POST
