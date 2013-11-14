@@ -17,37 +17,25 @@ div.module table { width: 100%; }
     <table>
         <caption>Conversions for now in UTC</caption>
         <tr>
-            <th>localtime</th>
             <th>localize</th>
+            <th>localtime</th>
             <th>Default</th>
             <th>Local time</th>
             <th>Alternative time</th>
             <th>UTC</th>
         </tr>
-{% localtime on %}
-{% localize on %}
-        <tr>
-            <td>on</td>
-            <td>on</td>
-            <td>{{ utc_now }}</td>
-            <td>{{ utc_now|localtime }}</td>
-            <td>{{ utc_now|timezone:alt_timezone }}</td>
-            <td>{{ utc_now|utc }}</td>
-        </tr>
-{% endlocalize %}
 {% localize off %}
-        <tr>
-            <td>on</td>
-            <td>off</td>
-            <td>{{ utc_now }}</td>
-            <td>{{ utc_now|localtime }}</td>
-            <td>{{ utc_now|timezone:alt_timezone }}</td>
-            <td>{{ utc_now|utc }}</td>
-        </tr>
-{% endlocalize %}
-{% endlocaltime %}
 {% localtime off %}
-{% localize on %}
+        <tr>
+            <td>off</td>
+            <td>off</td>
+            <td>{{ utc_now }}</td>
+            <td>{{ utc_now|localtime }}</td>
+            <td>{{ utc_now|timezone:alt_timezone }}</td>
+            <td>{{ utc_now|utc }}</td>
+        </tr>
+{% endlocaltime %}
+{% localtime on %}
         <tr>
             <td>off</td>
             <td>on</td>
@@ -56,18 +44,30 @@ div.module table { width: 100%; }
             <td>{{ utc_now|timezone:alt_timezone }}</td>
             <td>{{ utc_now|utc }}</td>
         </tr>
+{% endlocaltime %}
 {% endlocalize %}
-{% localize off %}
+{% localize on %}
+{% localtime off %}
         <tr>
-            <td>off</td>
+            <td>on</td>
             <td>off</td>
             <td>{{ utc_now }}</td>
             <td>{{ utc_now|localtime }}</td>
             <td>{{ utc_now|timezone:alt_timezone }}</td>
             <td>{{ utc_now|utc }}</td>
         </tr>
-{% endlocalize %}
 {% endlocaltime %}
+{% localtime on %}
+        <tr>
+            <td>on</td>
+            <td>on</td>
+            <td>{{ utc_now }}</td>
+            <td>{{ utc_now|localtime }}</td>
+            <td>{{ utc_now|timezone:alt_timezone }}</td>
+            <td>{{ utc_now|utc }}</td>
+        </tr>
+{% endlocaltime %}
+{% endlocalize %}
     </table>
 </div>
 
@@ -75,37 +75,25 @@ div.module table { width: 100%; }
     <table>
         <caption>Conversions for now in local time</caption>
         <tr>
-            <th>localtime</th>
             <th>localize</th>
+            <th>localtime</th>
             <th>Default</th>
             <th>Local time</th>
             <th>Alternative time</th>
             <th>UTC</th>
         </tr>
-{% localtime on %}
-{% localize on %}
-        <tr>
-            <td>on</td>
-            <td>on</td>
-            <td>{{ local_now }}</td>
-            <td>{{ local_now|localtime }}</td>
-            <td>{{ local_now|timezone:alt_timezone }}</td>
-            <td>{{ local_now|utc }}</td>
-        </tr>
-{% endlocalize %}
 {% localize off %}
-        <tr>
-            <td>on</td>
-            <td>off</td>
-            <td>{{ local_now }}</td>
-            <td>{{ local_now|localtime }}</td>
-            <td>{{ local_now|timezone:alt_timezone }}</td>
-            <td>{{ local_now|utc }}</td>
-        </tr>
-{% endlocalize %}
-{% endlocaltime %}
 {% localtime off %}
-{% localize on %}
+        <tr>
+            <td>off</td>
+            <td>off</td>
+            <td>{{ local_now }}</td>
+            <td>{{ local_now|localtime }}</td>
+            <td>{{ local_now|timezone:alt_timezone }}</td>
+            <td>{{ local_now|utc }}</td>
+        </tr>
+{% endlocaltime %}
+{% localtime on %}
         <tr>
             <td>off</td>
             <td>on</td>
@@ -114,18 +102,30 @@ div.module table { width: 100%; }
             <td>{{ local_now|timezone:alt_timezone }}</td>
             <td>{{ local_now|utc }}</td>
         </tr>
+{% endlocaltime %}
 {% endlocalize %}
-{% localize off %}
+{% localize on %}
+{% localtime off %}
         <tr>
-            <td>off</td>
+            <td>on</td>
             <td>off</td>
             <td>{{ local_now }}</td>
             <td>{{ local_now|localtime }}</td>
             <td>{{ local_now|timezone:alt_timezone }}</td>
             <td>{{ local_now|utc }}</td>
         </tr>
-{% endlocalize %}
 {% endlocaltime %}
+{% localtime on %}
+        <tr>
+            <td>on</td>
+            <td>on</td>
+            <td>{{ local_now }}</td>
+            <td>{{ local_now|localtime }}</td>
+            <td>{{ local_now|timezone:alt_timezone }}</td>
+            <td>{{ local_now|utc }}</td>
+        </tr>
+{% endlocaltime %}
+{% endlocalize %}
     </table>
 </div>
 
@@ -133,37 +133,25 @@ div.module table { width: 100%; }
     <table>
         <caption>Conversions for now as a naive datetime</caption>
         <tr>
-            <th>localtime</th>
             <th>localize</th>
+            <th>localtime</th>
             <th>Default (no conversion!)</th>
             <th>Local time</th>
             <th>Alternative time</th>
             <th>UTC</th>
         </tr>
-{% localtime on %}
-{% localize on %}
-        <tr>
-            <td>on</td>
-            <td>on</td>
-            <td>{{ naive_now }}</td>
-            <td>{{ naive_now|localtime }}</td>
-            <td>{{ naive_now|timezone:alt_timezone }}</td>
-            <td>{{ naive_now|utc }}</td>
-        </tr>
-{% endlocalize %}
 {% localize off %}
-        <tr>
-            <td>on</td>
-            <td>off</td>
-            <td>{{ naive_now }}</td>
-            <td>{{ naive_now|localtime }}</td>
-            <td>{{ naive_now|timezone:alt_timezone }}</td>
-            <td>{{ naive_now|utc }}</td>
-        </tr>
-{% endlocalize %}
-{% endlocaltime %}
 {% localtime off %}
-{% localize on %}
+        <tr>
+            <td>off</td>
+            <td>off</td>
+            <td>{{ naive_now }}</td>
+            <td>{{ naive_now|localtime }}</td>
+            <td>{{ naive_now|timezone:alt_timezone }}</td>
+            <td>{{ naive_now|utc }}</td>
+        </tr>
+{% endlocaltime %}
+{% localtime on %}
         <tr>
             <td>off</td>
             <td>on</td>
@@ -172,18 +160,30 @@ div.module table { width: 100%; }
             <td>{{ naive_now|timezone:alt_timezone }}</td>
             <td>{{ naive_now|utc }}</td>
         </tr>
+{% endlocaltime %}
 {% endlocalize %}
-{% localize off %}
+{% localize on %}
+{% localtime off %}
         <tr>
-            <td>off</td>
+            <td>on</td>
             <td>off</td>
             <td>{{ naive_now }}</td>
             <td>{{ naive_now|localtime }}</td>
             <td>{{ naive_now|timezone:alt_timezone }}</td>
             <td>{{ naive_now|utc }}</td>
         </tr>
-{% endlocalize %}
 {% endlocaltime %}
+{% localtime on %}
+        <tr>
+            <td>on</td>
+            <td>on</td>
+            <td>{{ naive_now }}</td>
+            <td>{{ naive_now|localtime }}</td>
+            <td>{{ naive_now|timezone:alt_timezone }}</td>
+            <td>{{ naive_now|utc }}</td>
+        </tr>
+{% endlocaltime %}
+{% endlocalize %}
     </table>
 </div>
 
@@ -212,7 +212,7 @@ div.module table { width: 100%; }
     Here is the contents of the database:
 </p>
 
-{% localize off %}{# datetimes are more readable in ISO format #}
+{% localize on %}{# datetimes are more readable in ISO format #}
 
 <div class="module">
     <table>
