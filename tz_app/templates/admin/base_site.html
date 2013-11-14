@@ -22,18 +22,18 @@
     {% endfor %}</select>
     <input type="submit" value="Set">
 </form>
-<form action="{% url 'set_alt_timezone' %}" method="POST">
+<form action="{% url 'set_other_timezone' %}" method="POST">
     {% csrf_token %}
-    <label for="alt_timezone">Alternative time zone:</label>
-    <select id="alt_timezone" name="alt_timezone">{% for timezone in timezones %}
-        <option{% if timezone == alt_timezone_name %} selected="selected"{% endif %}>{{ timezone }}</option>
+    <label for="other_timezone">Other time zone:</label>
+    <select id="other_timezone" name="other_timezone">{% for timezone in timezones %}
+        <option{% if timezone == other_timezone_name %} selected="selected"{% endif %}>{{ timezone }}</option>
     {% endfor %}</select>
     <input type="submit" value="Set">
 </form>
 {% else %}
 <p><em>If you install <a href="http://pytz.sourceforge.net/">pytz</a>, you'll be able to change the current and alternative time zone.</em></p>
 <p><span class="label">Current time zone:</span> {{ TIME_ZONE }}</p>
-<p><span class="label">Alternative time zone:</span> {{ alt_timezone_name }}</p>
+<p><span class="label">Other time zone:</span> {{ other_timezone_name }}</p>
 {% endif %}
 
 <form action="{% url 'set_locale' %}" method="POST">
