@@ -15,7 +15,7 @@ div.module table { width: 100%; }
 
 <div class="module">
     <table>
-        <caption>Conversions for now in UTC</caption>
+        <caption>Conversions for the current datetime in UTC — <tt>{{ utc_now_repr }}</tt></caption>
         <tr>
             <th>localize</th>
             <th>localtime</th>
@@ -73,7 +73,7 @@ div.module table { width: 100%; }
 
 <div class="module">
     <table>
-        <caption>Conversions for now in local time</caption>
+        <caption>Conversions for the current datetime in local time — <tt>{{ local_now_repr }}</tt></caption>
         <tr>
             <th>localize</th>
             <th>localtime</th>
@@ -131,7 +131,7 @@ div.module table { width: 100%; }
 
 <div class="module">
     <table>
-        <caption>Conversions for now as a naive datetime</caption>
+        <caption>Conversions for the current datetime without time zone — <tt>{{ naive_now_repr }}</tt></caption>
         <tr>
             <th>localize</th>
             <th>localtime</th>

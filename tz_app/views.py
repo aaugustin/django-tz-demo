@@ -18,6 +18,9 @@ def home(request):
     utc_now = get_utc_now()
     local_now = get_current_now()
     naive_now = get_default_now().replace(tzinfo=None)
+    utc_now_repr = repr(utc_now)
+    local_now_repr = repr(local_now)
+    naive_now_repr = repr(naive_now)
 
     form = WhenForm(request.GET or None)
     if form.is_valid():
