@@ -13,12 +13,14 @@ div.module table { width: 100%; }
 {% block content %}
 <h2>Conversions in templates</h2>
 
+<p><em>NB: the values of <tt>USE_L10N</tt> and <tt>USE_TZ</tt> are emulated with <tt>{% templatetag openblock %} localize {% templatetag closeblock %}</tt> and <tt>{% templatetag openblock %} localtime {% templatetag closeblock %}</tt> in these tables.</em></p>
+
 <div class="module">
     <table>
         <caption>Conversions for the current datetime in UTC — <tt>{{ utc_now_repr }}</tt></caption>
         <tr>
-            <td><tt>{% templatetag openblock %} localize {% templatetag closeblock %}</tt></td>
-            <td><tt>{% templatetag openblock %} localtime {% templatetag closeblock %}</tt></td>
+            <td><tt>USE_L10N</tt></td>
+            <td><tt>USE_TZ</tt></td>
             <td><tt>{% templatetag openvariable %} now {% templatetag closevariable %}</tt></td>
             <td><tt>{% templatetag openvariable %} now|localtime {% templatetag closevariable %}</tt></td>
             <td><tt>{% templatetag openvariable %} now|timezone:other_timezone {% templatetag closevariable %}</tt></td>
@@ -27,8 +29,8 @@ div.module table { width: 100%; }
 {% localize off %}
 {% localtime off %}
         <tr>
-            <td>off</td>
-            <td>off</td>
+            <td><tt>False</tt></td>
+            <td><tt>False</tt></td>
             <td>{{ utc_now }}</td>
             <td>{{ utc_now|localtime }}</td>
             <td>{{ utc_now|timezone:other_timezone }}</td>
@@ -37,8 +39,8 @@ div.module table { width: 100%; }
 {% endlocaltime %}
 {% localtime on %}
         <tr>
-            <td>off</td>
-            <td>on</td>
+            <td><tt>False</tt></td>
+            <td><tt>True</tt></td>
             <td>{{ utc_now }}</td>
             <td>{{ utc_now|localtime }}</td>
             <td>{{ utc_now|timezone:other_timezone }}</td>
@@ -49,8 +51,8 @@ div.module table { width: 100%; }
 {% localize on %}
 {% localtime off %}
         <tr>
-            <td>on</td>
-            <td>off</td>
+            <td><tt>True</tt></td>
+            <td><tt>False</tt></td>
             <td>{{ utc_now }}</td>
             <td>{{ utc_now|localtime }}</td>
             <td>{{ utc_now|timezone:other_timezone }}</td>
@@ -59,8 +61,8 @@ div.module table { width: 100%; }
 {% endlocaltime %}
 {% localtime on %}
         <tr>
-            <td>on</td>
-            <td>on</td>
+            <td><tt>True</tt></td>
+            <td><tt>True</tt></td>
             <td>{{ utc_now }}</td>
             <td>{{ utc_now|localtime }}</td>
             <td>{{ utc_now|timezone:other_timezone }}</td>
@@ -75,8 +77,8 @@ div.module table { width: 100%; }
     <table>
         <caption>Conversions for the current datetime in local time — <tt>{{ local_now_repr }}</tt></caption>
         <tr>
-            <td><tt>{% templatetag openblock %} localize {% templatetag closeblock %}</tt></td>
-            <td><tt>{% templatetag openblock %} localtime {% templatetag closeblock %}</tt></td>
+            <td><tt>USE_L10N</tt></td>
+            <td><tt>USE_TZ</tt></td>
             <td><tt>{% templatetag openvariable %} now {% templatetag closevariable %}</tt></td>
             <td><tt>{% templatetag openvariable %} now|localtime {% templatetag closevariable %}</tt></td>
             <td><tt>{% templatetag openvariable %} now|timezone:other_timezone {% templatetag closevariable %}</tt></td>
@@ -85,8 +87,8 @@ div.module table { width: 100%; }
 {% localize off %}
 {% localtime off %}
         <tr>
-            <td>off</td>
-            <td>off</td>
+            <td><tt>False</tt></td>
+            <td><tt>False</tt></td>
             <td>{{ local_now }}</td>
             <td>{{ local_now|localtime }}</td>
             <td>{{ local_now|timezone:other_timezone }}</td>
@@ -95,8 +97,8 @@ div.module table { width: 100%; }
 {% endlocaltime %}
 {% localtime on %}
         <tr>
-            <td>off</td>
-            <td>on</td>
+            <td><tt>False</tt></td>
+            <td><tt>True</tt></td>
             <td>{{ local_now }}</td>
             <td>{{ local_now|localtime }}</td>
             <td>{{ local_now|timezone:other_timezone }}</td>
@@ -107,8 +109,8 @@ div.module table { width: 100%; }
 {% localize on %}
 {% localtime off %}
         <tr>
-            <td>on</td>
-            <td>off</td>
+            <td><tt>True</tt></td>
+            <td><tt>False</tt></td>
             <td>{{ local_now }}</td>
             <td>{{ local_now|localtime }}</td>
             <td>{{ local_now|timezone:other_timezone }}</td>
@@ -117,8 +119,8 @@ div.module table { width: 100%; }
 {% endlocaltime %}
 {% localtime on %}
         <tr>
-            <td>on</td>
-            <td>on</td>
+            <td><tt>True</tt></td>
+            <td><tt>True</tt></td>
             <td>{{ local_now }}</td>
             <td>{{ local_now|localtime }}</td>
             <td>{{ local_now|timezone:other_timezone }}</td>
@@ -133,8 +135,8 @@ div.module table { width: 100%; }
     <table>
         <caption>Conversions for the current datetime without time zone — <tt>{{ naive_now_repr }}</tt></caption>
         <tr>
-            <td><tt>{% templatetag openblock %} localize {% templatetag closeblock %}</tt></td>
-            <td><tt>{% templatetag openblock %} localtime {% templatetag closeblock %}</tt></td>
+            <td><tt>USE_L10N</tt></td>
+            <td><tt>USE_TZ</tt></td>
             <td><tt>{% templatetag openvariable %} now {% templatetag closevariable %}</tt></td>
             <td><tt>{% templatetag openvariable %} now|localtime {% templatetag closevariable %}</tt></td>
             <td><tt>{% templatetag openvariable %} now|timezone:other_timezone {% templatetag closevariable %}</tt></td>
@@ -143,8 +145,8 @@ div.module table { width: 100%; }
 {% localize off %}
 {% localtime off %}
         <tr>
-            <td>off</td>
-            <td>off</td>
+            <td><tt>False</tt></td>
+            <td><tt>False</tt></td>
             <td>{{ naive_now }}</td>
             <td>{{ naive_now|localtime }}</td>
             <td>{{ naive_now|timezone:other_timezone }}</td>
@@ -153,8 +155,8 @@ div.module table { width: 100%; }
 {% endlocaltime %}
 {% localtime on %}
         <tr>
-            <td>off</td>
-            <td>on</td>
+            <td><tt>False</tt></td>
+            <td><tt>True</tt></td>
             <td>{{ naive_now }}</td>
             <td>{{ naive_now|localtime }}</td>
             <td>{{ naive_now|timezone:other_timezone }}</td>
@@ -165,8 +167,8 @@ div.module table { width: 100%; }
 {% localize on %}
 {% localtime off %}
         <tr>
-            <td>on</td>
-            <td>off</td>
+            <td><tt>True</tt></td>
+            <td><tt>False</tt></td>
             <td>{{ naive_now }}</td>
             <td>{{ naive_now|localtime }}</td>
             <td>{{ naive_now|timezone:other_timezone }}</td>
@@ -175,8 +177,8 @@ div.module table { width: 100%; }
 {% endlocaltime %}
 {% localtime on %}
         <tr>
-            <td>on</td>
-            <td>on</td>
+            <td><tt>True</tt></td>
+            <td><tt>True</tt></td>
             <td>{{ naive_now }}</td>
             <td>{{ naive_now|localtime }}</td>
             <td>{{ naive_now|timezone:other_timezone }}</td>
